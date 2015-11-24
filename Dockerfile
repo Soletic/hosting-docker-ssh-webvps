@@ -20,6 +20,10 @@ ENV PHP_MEMORY_LIMIT 256M
 RUN mkdir -p /chroot/plugins/webvps
 ADD setup.sh /chroot/plugins/webvps/setup.sh
 ADD install.conf /chroot/plugins/webvps/install.conf
-
-# MAKE SCRIPT EXCUTABLE
 RUN chmod 755 /chroot/plugins/webvps/*.*
+
+ADD chroot_init_mysql.sh /root/scripts/chroot_init_mysql.sh
+RUN chmod 755 /root/scripts/chroot_init_mysql.sh
+
+RUN rm /etc/mysql/my.cnf
+ADD my.cnf /etc/mysql/my.cnf
