@@ -12,6 +12,11 @@ RUN apt-get -y update && \
   apt-get -y install php5-mysql && \
   apt-get -y install mysql-client
 
+# Addons PHP5
+RUN apt-get -y update && apt-get -y install php5-gd
+# Addons node and less to compile assets when deploying app
+RUN apt-get -y install node-less
+
 # Environment variables to configure php
 ENV PHP_TIME_ZONE "Europe/Paris"
 ENV PHP_MEMORY_LIMIT 256M

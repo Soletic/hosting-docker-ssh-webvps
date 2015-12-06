@@ -47,6 +47,12 @@ case "$1" in
 		sed -ri -e "s/^host=.*/host=$host_ip/" \
 			-e "s/^port=.*/port=$port/" $chroot_dir/etc/mysql/my.cnf
 		
+		# /etc/hosts
+		# Move from to reply-to if no reply-to
+		if [ $(cat $chroot_dir/etc/hosts | grep mysql$ | wc -l) -eq 0 ]; then
+			echo "$host_ip mysql" >> $chroot_dir/etc/hosts
+		fi
+		sed -ri -e "s/.+mysql$/${host_ip} mysql/" $chroot_dir/etc/hosts
 		;;
 	setip)
 		
