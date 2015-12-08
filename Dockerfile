@@ -35,4 +35,3 @@ ADD my.cnf /etc/mysql/my.cnf
 
 # Remove cron php and alert
 RUN rm -f /etc/cron.d/php5
-RUN sed -i "$(grep -n ^PATH /etc/crontab | grep -Eo '^[^:]+') a MAILTO=\"\"" /etc/crontab
