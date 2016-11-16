@@ -3,22 +3,19 @@ MAINTAINER Sol&TIC <serveur@soletic.org>
 
 RUN apt-get update && \
   apt-get -y install software-properties-common python-software-properties && \
-  add-apt-repository -y ppa:ondrej/php5-5.6
+  add-apt-repository -y ppa:ondrej/php
 
 # APACHE / MYSQL
 RUN apt-get -y update && \
-  apt-get -y install php5-fpm php5 && \
-  apt-get -y install php5-mcrypt php5-intl php5-curl && \
-  apt-get -y install php5-mysql && \
+  apt-get -y install php5.6-fpm php5.6 && \
+  apt-get -y install php5.6-mcrypt php5.6-intl php5.6-curl php5.6-mysql php5.6-gd && \
   apt-get -y install mysql-client
 
-# Addons PHP5
-RUN apt-get -y update && apt-get -y install php5-gd
 # Addons node and less to compile assets when deploying app
 RUN apt-get -y install node-less
 
 # Addons Mongo
-RUN apt-get -y update && apt-get -y install php5-mongo && \
+RUN apt-get -y update && apt-get -y install php5.6-mongo && \
 	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
 	echo "deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list && \
 	apt-get -y update && apt-get install -y mongodb-org-shell mongodb-org-tools
